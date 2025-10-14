@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동영상 재생 예시 - VOCAB WAVE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .video-section {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .video-placeholder {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .video-info {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .video-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        .code-example {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎥 동영상 재생 예시</h1>
+        
+        <div class="video-section">
+            <h2>1. 기본 동영상 재생</h2>
+            <div class="video-container">
+                <!-- 실제 동영상 파일이 있을 때 사용 -->
+                <!--
+                <video controls poster="assets/images/screenshots/game-preview-poster.jpg">
+                    <source src="assets/videos/game-preview.mp4" type="video/mp4">
+                    <source src="assets/videos/game-preview.webm" type="video/webm">
+                    <p>브라우저가 동영상을 지원하지 않습니다.</p>
+                </video>
+                -->
+                
+                <!-- 동영상 파일이 없을 때 표시할 플레이스홀더 -->
+                <div class="video-placeholder">
+                    🎮 게임 플레이 동영상<br>
+                    <small>assets/videos/game-preview.mp4</small>
+                </div>
+            </div>
+            <div class="video-info">
+                <div class="video-title">VOCAB WAVE 게임 플레이</div>
+                <div class="video-description">
+                    실제 게임 플레이 영상으로 앱의 핵심 기능을 보여줍니다.<br>
+                    단어를 맞춰 적을 물리치는 재미있는 학습 과정을 확인할 수 있습니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <h2>2. 자동 재생 동영상 (음소거)</h2>
+            <div class="video-container">
+                <!-- 자동 재생 동영상 (음소거) -->
+                <!--
+                <video autoplay muted loop playsinline>
+                    <source src="assets/videos/tutorial-loop.mp4" type="video/mp4">
+                    <source src="assets/videos/tutorial-loop.webm" type="video/webm">
+                </video>
+                -->
+                
+                <div class="video-placeholder">
+                    🔄 튜토리얼 루프<br>
+                    <small>assets/videos/tutorial-loop.mp4</small>
+                </div>
+            </div>
+            <div class="video-info">
+                <div class="video-title">튜토리얼 애니메이션</div>
+                <div class="video-description">
+                    사용법을 보여주는 짧은 애니메이션입니다.<br>
+                    자동으로 반복 재생되며 음소거 상태입니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <h2>3. 반응형 동영상</h2>
+            <div class="video-container">
+                <!-- 반응형 동영상 -->
+                <!--
+                <video controls responsive>
+                    <source src="assets/videos/demo.mp4" type="video/mp4">
+                    <source src="assets/videos/demo.webm" type="video/webm">
+                </video>
+                -->
+                
+                <div class="video-placeholder">
+                    📱 반응형 동영상<br>
+                    <small>모바일/태블릿/데스크톱 대응</small>
+                </div>
+            </div>
+            <div class="video-info">
+                <div class="video-title">앱 데모 영상</div>
+                <div class="video-description">
+                    다양한 기기에서 최적화된 화질로 재생됩니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="code-example">
+            <h3>📝 HTML 코드 예시</h3>
+            <pre><code>&lt;!-- 기본 동영상 재생 --&gt;
+&lt;video controls poster="assets/images/screenshots/game-preview-poster.jpg"&gt;
+    &lt;source src="assets/videos/game-preview.mp4" type="video/mp4"&gt;
+    &lt;source src="assets/videos/game-preview.webm" type="video/webm"&gt;
+    &lt;p&gt;브라우저가 동영상을 지원하지 않습니다.&lt;/p&gt;
+&lt;/video&gt;
+
+&lt;!-- 자동 재생 (음소거) --&gt;
+&lt;video autoplay muted loop playsinline&gt;
+    &lt;source src="assets/videos/tutorial-loop.mp4" type="video/mp4"&gt;
+    &lt;source src="assets/videos/tutorial-loop.webm" type="video/webm"&gt;
+&lt;/video&gt;
+
+&lt;!-- 반응형 동영상 --&gt;
+&lt;video controls responsive&gt;
+    &lt;source src="assets/videos/demo.mp4" type="video/mp4"&gt;
+    &lt;source src="assets/videos/demo.webm" type="video/webm"&gt;
+&lt;/video&gt;</code></pre>
+        </div>
+
+        <div class="code-example">
+            <h3>🎨 CSS 스타일링 예시</h3>
+            <pre><code>/* 동영상 컨테이너 */
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* 동영상 요소 */
+video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 반응형 동영상 */
+@media (max-width: 768px) {
+    .video-container {
+        max-width: 100%;
+    }
+    
+    video {
+        height: 250px;
+        object-fit: cover;
+    }
+}</code></pre>
+        </div>
+
+        <div class="code-example">
+            <h3>⚙️ JavaScript 제어 예시</h3>
+            <pre><code>// 동영상 재생 제어
+const video = document.querySelector('video');
+
+// 재생/일시정지
+video.addEventListener('play', () => {
+    console.log('동영상 재생 시작');
+});
+
+video.addEventListener('pause', () => {
+    console.log('동영상 일시정지');
+});
+
+// 재생 완료
+video.addEventListener('ended', () => {
+    console.log('동영상 재생 완료');
+});
+
+// 프로그래밍 방식으로 재생
+function playVideo() {
+    video.play();
+}
+
+function pauseVideo() {
+    video.pause();
+}</code></pre>
+        </div>
+    </div>
+</body>
+</html>

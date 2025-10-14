@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<!--
+    📋 STANDARD HTML 가이드
+    ========================
+    
+    이 파일은 웹싸이트.md의 내용을 기반으로 HTML을 어떻게 만들지를 설명하는 용도입니다.
+    
+    🎯 주요 구성 요소:
+    1. Header 섹션 - 로고와 태그라인
+    2. Hero 섹션 - 모바일 화면 미리보기 + 메인 제목 + CTA 버튼
+    3. 핵심 기능 섹션 - 3개 카드형 기능 소개
+    4. 학습 철학 섹션 - 앱의 핵심 철학
+    5. 학습 효과 섹션 - 통계 데이터 (애니메이션 포함)
+    6. SRS 학습 시스템 섹션 - 과학적 학습 방법론
+    7. 다운로드 섹션 - 앱스토어 링크
+    
+    📱 모바일 화면 표시:
+    - Hero 섹션 상단에 모바일 프레임 추가
+    - 동영상 삽입 위치 표시
+    - 실제 구현 시 <video> 태그로 교체
+    
+    🎨 디자인 특징:
+    - 반응형 웹 디자인 (모바일/데스크톱 대응)
+    - 그라데이션 배경과 카드형 레이아웃
+    - 부드러운 애니메이션 효과
+    - Material Design 가이드라인 준수
+-->
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOCAB WAVE - 초등~고등학생을 위한 게임형 영어 단어 학습 앱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #667eea;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Mobile Preview */
+        .mobile-preview {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .mobile-frame {
+            width: 200px;
+            height: 400px;
+            background: #333;
+            border-radius: 25px;
+            padding: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-placeholder {
+            color: white;
+            text-align: center;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            padding: 1rem;
+        }
+
+        .video-placeholder small {
+            color: #888;
+            font-size: 0.7rem;
+        }
+
+        .game-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        /* Section */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section:nth-child(even) {
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #ff6b6b;
+        }
+
+        .philosophy {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .philosophy h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .philosophy p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .srs-principle {
+            background: #e3f2fd;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .srs-principle h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1976d2;
+        }
+
+        .srs-timeline {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .srs-step {
+            text-align: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 0.5rem;
+        }
+
+        .download-section {
+            background: #333;
+            color: white;
+            text-align: center;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: white;
+            color: #333;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #666;
+        }
+
+        /* Screenshots Grid */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .screenshot-item {
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        .screenshot-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        .screenshot-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .screenshot-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .screenshot-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .screenshot-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .screenshot-item p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .srs-timeline {
+                flex-direction: column;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1️⃣ Header 섹션 -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">🎮 보카 웨이브</div>
+            <div class="tagline">단어공부용 게임</div>
+        </div>
+    </header>
+
+    <!-- 2️⃣ Hero 섹션 -->
+    <section class="hero">
+        <div class="container">
+            <!-- 모바일용 화면 크기 표시 -->
+            <div class="mobile-preview">
+                <div class="mobile-frame">
+                    <div class="mobile-screen">
+                        <video autoplay muted loop playsinline class="game-video">
+                            <source src="../assets/videos/vocab_wave.mp4" type="video/mp4">
+                            <div class="video-placeholder">
+                                📱 모바일 화면<br>
+                                🎥 동영상 추가 위치<br>
+                                <small>(예: 게임플레이 영상)</small>
+                            </div>
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <h1>게임을 할수록 단어실력이 쑥쑥!</h1>
+            <p>단어 공부가 더이상 지루하지 않습니다.</p>
+        </div>
+    </section>
+
+    <!-- 6️⃣ SRS 학습 시스템 섹션 -->
+    <section class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">🧠 과학적 반복 학습 시스템 (SRS)</h2>
+
+            <!-- 핵심 메시지 -->
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem; color: #ffd700;">"잊어버리기 전에 다시 학습하세요!"</h3>
+                <p style="font-size: 1.2rem; opacity: 0.9;">기억 곡선에 따른 최적의 복습 타이밍으로 효율적인 학습</p>
+            </div>
+
+            <!-- 학습 원칙 카드들 -->
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                <div
+                    style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px; text-align: center; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
+                    <h4 style="font-size: 1.5rem; margin-bottom: 1rem; color: #4ade80;">아는 단어는 많을수록 이득</h4>
+                    <p style="opacity: 0.9; margin-bottom: 1rem;">빠르게 통과하여 시간 절약</p>
+                    <div
+                        style="background: rgba(74, 222, 128, 0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">
+                        효율적 학습
+                    </div>
+                </div>
+
+                <div
+                    style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px; text-align: center; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">❌</div>
+                    <h4 style="font-size: 1.5rem; margin-bottom: 1rem; color: #f87171;">모르는 단어는 알 때까지</h4>
+                    <p style="opacity: 0.9; margin-bottom: 1rem;">집중 반복 학습으로 완전 정복</p>
+                    <div
+                        style="background: rgba(248, 113, 113, 0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">
+                        완벽한 암기
+                    </div>
+                </div>
+            </div>
+
+            <!-- SRS 특징들 -->
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div
+                    style="background: rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: 10px; text-align: center; backdrop-filter: blur(5px);">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
+                    <h5 style="margin-bottom: 0.5rem;">기억 곡선 분석</h5>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">최적의 복습 타이밍 제공</p>
+                </div>
+                <div
+                    style="background: rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: 10px; text-align: center; backdrop-filter: blur(5px);">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎯</div>
+                    <h5 style="margin-bottom: 0.5rem;">개인별 맞춤</h5>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">학습 패턴 분석 및 최적화</p>
+                </div>
+                <div
+                    style="background: rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: 10px; text-align: center; backdrop-filter: blur(5px);">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🧠</div>
+                    <h5 style="margin-bottom: 0.5rem;">장기 기억 전환</h5>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">과학적 방법으로 영구 암기</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3️⃣ 핵심 기능 섹션 -->
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">🎯 게임 특징</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>강력한 몰입력</h3>
+                    <p>빨리 답을 맞출수록 더 강력해집니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>모르는 단어도 쉽게</h3>
+                    <p>틀린 답은 바로 재학습하고 망각 곡선에 따른 최적의 재학습 기회를 제공합니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h3>체계적 학습</h3>
+                    <p>학년별 단어장으로 단계적으로 어휘력을 향상시킵니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💥</div>
+                    <h3>강한 성취감</h3>
+                    <p>떼로 몰려오는 강력한 적들도 퀴즈 한방에 제거하는 짜릿함을 느껴보세요</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4️⃣ 게임 플레이 미리보기 섹션 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">🎮 실제 게임 화면</h2>
+            <div class="screenshots-grid">
+                <div class="screenshot-item">
+                    <div class="screenshot-image">
+                        <img src="../assets/images/screenshots/1.png" alt="몰려드는 적 스크린샷" />
+                    </div>
+                    <h4>몰려오는 적</h4>
+                    <p>어떻게 하지?</p>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-image">
+                        <img src="../assets/images/screenshots/2.png" alt="퀴즈 스크린샷" />
+                    </div>
+                    <h4>단어야 구해줘ㅠㅠ</h4>
+                    <p>빨리 정답을 맞추자.</p>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-image">
+                        <img src="../assets/images/screenshots/3.png" alt="공격하는 스크린샷" />
+                    </div>
+                    <h4>강력한 공격!</h4>
+                    <p>속이 다 시원하군.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5️⃣ 학습 효과 섹션 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">📊 학습 성과</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>단어 기억률 향상</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10배</h3>
+                    <p>학습 속도 증가</p>
+                </div>
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>사용자 만족도</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- 사용자 후기 섹션 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">💬 사용자 후기</h2>
+            <div class="testimonial">
+                <p>"그동안 단어암기하는게 너무 힘들었는데, 기존 단어 암기어플과는 너무 다르네요."</p>
+                <div class="testimonial-author">- 김** (초등학교 2학년)</div>
+            </div>
+            <div class="testimonial">
+                <p>"다른 게임은 부모님 몰래 했었는데, 이제는 부모님이 게임 좀 하라고 강요하세요. ㅋㅋ"</p>
+                <div class="testimonial-author">- 이** (고등학교 1학년)</div>
+            </div>
+            <div class="testimonial">
+                <p>"그동안 아이가 공부는 안하고 게임만 해서 고민이었는데, 이제 게임을 할수록 단어공부가 되니 아이가 자신감이 생겨서 좋아요."</p>
+                <div class="testimonial-author">- 박** (학부모)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7️⃣ 다운로드 섹션 -->
+    <section class="download-section section">
+        <div class="container">
+            <h2 class="section-title" style="color: #ffd700;">지금 시작하세요!</h2>
+            <h3 style="color: #ff6b6b; margin-bottom: 1rem;">"단어를 외우는데는 왕도가 없습니다. 오로지 반복 학습 뿐"</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #e0e0e0;">• 재미로 가득찬 보카 웨이브로 게임을 즐기다 보면 단어 암기 끝!</p>
+            <div class="download-buttons">
+                <a href="https://apps.apple.com/app/helpee-words/id6473635697" class="download-btn" target="_blank">
+                    <span>📱</span>
+                    <span>App Store</span>
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.araonesoft.helpee" class="download-btn"
+                    target="_blank">
+                    <span>🤖</span>
+                    <span>Google Play</span>
+                </a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.8;">iOS 13.0+ | Android 8.0+</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #222; color: white; padding: 2rem 0; text-align: center;">
+        <div class="container">
+            <p>&copy; 2024 VOCAB WAVE. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate stats on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.querySelector('.stats-grid');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-item h3');
+            statNumbers.forEach(stat => {
+                const finalValue = stat.textContent;
+                const isPercentage = finalValue.includes('%');
+                const isMultiplier = finalValue.includes('배');
+                const isPlus = finalValue.includes('+');
+
+                let numericValue = parseFloat(finalValue.replace(/[^\d.]/g, ''));
+
+                if (isPercentage) {
+                    animateNumber(stat, 0, numericValue, 2000, '%');
+                } else if (isMultiplier) {
+                    animateNumber(stat, 0, numericValue, 2000, '배');
+                } else if (isPlus) {
+                    animateNumber(stat, 0, numericValue, 2000, '+');
+                } else {
+                    animateNumber(stat, 0, numericValue, 2000, '');
+                }
+            });
+        }
+
+        function animateNumber(element, start, end, duration, suffix) {
+            const startTime = performance.now();
+
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                const current = start + (end - start) * easeOutCubic(progress);
+                element.textContent = Math.floor(current) + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                }
+            }
+
+            requestAnimationFrame(updateNumber);
+        }
+
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+        }
+    </script>
+</body>
+
+</html>
