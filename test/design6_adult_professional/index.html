@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOCAB WAVE - 과학적 영어 단어 학습 시스템</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Section */
+        .header {
+            background: #ffffff;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .video-container {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto 60px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            background: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #2c3e50;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .section-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* SRS Section */
+        .srs-section {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+        }
+
+        .srs-content {
+            text-align: center;
+            padding: 80px 40px;
+        }
+
+        .srs-title {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .srs-message {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .srs-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        .srs-principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .principle {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            text-align: left;
+        }
+
+        .principle-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .principle p {
+            color: #6c757d;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .srs-features {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #495057;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            padding: 50px 40px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            display: block;
+            color: #667eea;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .feature-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #6c757d;
+        }
+
+        /* Screenshots Section */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .screenshot-card {
+            text-align: center;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e9ecef;
+            transition: transform 0.3s ease;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .screenshot-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .screenshot-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .screenshot-description {
+            color: #6c757d;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 50px 30px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e9ecef;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #667eea;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #495057;
+        }
+
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .review-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e9ecef;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 4rem;
+            color: #667eea;
+            font-weight: 700;
+            opacity: 0.3;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .review-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: #495057;
+            font-style: italic;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: #6c757d;
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        /* Download Section */
+        .download-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .download-title {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .download-message {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .download-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .download-btn {
+            background: #ffffff;
+            color: #667eea;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: #f8f9fa;
+            border-color: #667eea;
+        }
+
+        .system-requirements {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-top: 20px;
+            font-weight: 400;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .srs-principles {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .srs-content {
+                padding: 60px 20px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <div class="logo">VOCAB WAVE</div>
+                    <div class="tagline">과학적 영어 단어 학습 시스템</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">"게임을 할수록 단어실력이 쑥쑥!"</h1>
+                <p class="hero-subtitle">단어 공부가 더이상 지루하지 않습니다</p>
+                <div class="video-container">
+                    <video autoplay muted loop>
+                        <source src="../../assets/videos/vocab_wave.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SRS Learning System Section -->
+    <section class="section srs-section">
+        <div class="container">
+            <div class="srs-content">
+                <h2 class="srs-title">🧠 과학적 반복 학습 시스템 (SRS)</h2>
+                <p class="srs-message">"잊어버리기 전에 다시 학습하세요!"</p>
+                <p class="srs-subtitle">기억 곡선에 따른 최적의 복습 타이밍으로 효율적인 학습</p>
+
+                <div class="srs-principles">
+                    <div class="principle">
+                        <div class="principle-text">✅ 아는 단어는 많을수록 이득</div>
+                        <p>빠르게 통과하여 시간 절약</p>
+                    </div>
+                    <div class="principle">
+                        <div class="principle-text">❌ 모르는 단어는 알 때까지</div>
+                        <p>집중 반복 학습으로 완전 정복</p>
+                    </div>
+                </div>
+
+                <div class="srs-features">
+                    <div class="feature-item">📊 기억 곡선 분석</div>
+                    <div class="feature-item">🎯 개인별 맞춤</div>
+                    <div class="feature-item">🧠 장기 기억 전환</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">🎯 핵심 기능</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">⚡</span>
+                        <h3 class="feature-title">강력한 몰입력</h3>
+                        <p class="feature-description">빨리 답을 맞출수록 더 강력해집니다</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📚</span>
+                        <h3 class="feature-title">모르는 단어도 쉽게</h3>
+                        <p class="feature-description">틀린 답은 바로 재학습하고 망각 곡선에 따른 최적의 재학습 기회를 제공합니다</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📖</span>
+                        <h3 class="feature-title">체계적 학습</h3>
+                        <p class="feature-description">학년별 단어장으로 단계적으로 어휘력을 향상시킵니다</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">💥</span>
+                        <h3 class="feature-title">강한 성취감</h3>
+                        <p class="feature-description">떼로 몰려오는 강력한 적들도 퀴즈 한방에 제거하는 짜릿함을 느껴보세요</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Screenshots Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">🎮 실제 게임 화면</h2>
+                <div class="screenshots-grid">
+                    <div class="screenshot-card">
+                        <img src="../../assets/images/screenshots/1.png" alt="몰려오는 적" class="screenshot-image">
+                        <h3 class="screenshot-title">몰려오는 적</h3>
+                        <p class="screenshot-description">어떻게 하지?</p>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="../../assets/images/screenshots/2.png" alt="단어야 구해줘ㅠㅠ" class="screenshot-image">
+                        <h3 class="screenshot-title">단어야 구해줘ㅠㅠ</h3>
+                        <p class="screenshot-description">빨리 정답을 맞추자</p>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="../../assets/images/screenshots/3.png" alt="강력한 공격!" class="screenshot-image">
+                        <h3 class="screenshot-title">강력한 공격!</h3>
+                        <p class="screenshot-description">속이 다 시원하군</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Stats Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">📊 학습 성과</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">단어 기억률 향상</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10배</div>
+                        <div class="stat-label">학습 속도 증가</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">사용자 만족도</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Reviews Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">💬 사용자 후기</h2>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <p class="review-text">그동안 단어암기하는게 너무 힘들었는데, 기존 단어 암기어플과는 너무 다르네요.</p>
+                        <div class="review-author">- 김** (초등학교 2학년)</div>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-text">다른 게임은 부모님 몰래 했었는데, 이제는 부모님이 게임 좀 하라고 강요하세요. ㅋㅋ</p>
+                        <div class="review-author">- 이** (고등학교 1학년)</div>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-text">그동안 아이가 공부는 안하고 게임만 해서 고민이었는데, 이제 게임을 할수록 단어공부가 되니 아이가 자신감이 생겨서 좋아요.</p>
+                        <div class="review-author">- 박** (학부모)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="section download-section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="download-title">지금 시작하세요!</h2>
+                <p class="download-message">"단어를 외우는데는 왕도가 없습니다. 오로지 반복 학습 뿐"</p>
+                <p class="download-subtitle">• 재미로 가득찬 보카 웨이브로 게임을 즐기다 보면 단어 암기 끝!</p>
+
+                <div class="download-buttons">
+                    <a href="https://apps.apple.com/app/helpee-words/id6473635697" class="download-btn"
+                        target="_blank">App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.araonesoft.helpee" class="download-btn"
+                        target="_blank">Google Play</a>
+                </div>
+
+                <div class="system-requirements">iOS 13.0+ | Android 8.0+</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add smooth scroll animations
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add fade-in animation to sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.add('fade-in');
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.feature-card, .stat-card, .review-card, .screenshot-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-8px)';
+                });
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
