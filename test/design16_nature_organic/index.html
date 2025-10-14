@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 보카 웨이브 - Nature Organic 스타일</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 25%, #ffd3a5 50%, #fd9853 75%, #a8e6cf 100%);
+            color: #2d5016;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Organic background patterns */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(168, 230, 207, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 211, 165, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(220, 237, 193, 0.3) 0%, transparent 50%);
+            animation: organicFloat 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes organicFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Organic 기본 스타일 */
+        .organic-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            box-shadow:
+                0 20px 40px rgba(45, 80, 22, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(168, 230, 207, 0.3);
+        }
+
+        .organic-button {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+            border-radius: 30px;
+            box-shadow:
+                0 10px 20px rgba(45, 80, 22, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .organic-button:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 15px 30px rgba(45, 80, 22, 0.3),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Header Section */
+        .header {
+            padding: 40px 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(168, 230, 207, 0.3);
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6b8e23 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(45, 80, 22, 0.3);
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: #4a7c59;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6b8e23 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(45, 80, 22, 0.3);
+            line-height: 1.2;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 60px;
+            color: #4a7c59;
+            font-weight: 600;
+        }
+
+        .video-container {
+            position: relative;
+            max-width: 350px;
+            margin: 0 auto 60px;
+            border-radius: 60px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow:
+                0 20px 40px rgba(45, 80, 22, 0.2),
+                inset 0 0 0 2px rgba(168, 230, 207, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .video-container:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow:
+                0 25px 50px rgba(45, 80, 22, 0.3),
+                inset 0 0 0 2px rgba(168, 230, 207, 0.5);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 60px;
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+            color: #2d5016;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.5;
+            padding: 3rem 2rem;
+            border-radius: 60px;
+            font-weight: 600;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 80px;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6b8e23 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(45, 80, 22, 0.3);
+            font-weight: 800;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .section-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* SRS Section */
+        .srs-section {
+            background: linear-gradient(135deg, rgba(168, 230, 207, 0.8) 0%, rgba(220, 237, 193, 0.8) 100%);
+            border-radius: 60px;
+            padding: 80px 60px;
+            margin: 60px 0;
+            box-shadow:
+                0 20px 40px rgba(45, 80, 22, 0.2),
+                inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(168, 230, 207, 0.3);
+        }
+
+        .srs-content {
+            text-align: center;
+        }
+
+        .srs-title {
+            font-size: 3.5rem;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6b8e23 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(45, 80, 22, 0.3);
+            font-weight: 800;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .srs-message {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #4a7c59;
+            text-shadow: 0 0 20px rgba(74, 124, 89, 0.3);
+        }
+
+        .srs-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 60px;
+            color: #2d5016;
+            font-weight: 600;
+        }
+
+        .srs-principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .principle {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 40px;
+            text-align: center;
+            box-shadow:
+                0 15px 30px rgba(45, 80, 22, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(168, 230, 207, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .principle:hover {
+            transform: translateY(-8px);
+            box-shadow:
+                0 20px 40px rgba(45, 80, 22, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .principle-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2d5016;
+        }
+
+        .principle p {
+            color: #4a7c59;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .srs-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+        }
+
+        .feature-item {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d5016;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 30px;
+            border-radius: 30px;
+            box-shadow:
+                0 10px 20px rgba(45, 80, 22, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(168, 230, 207, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 15px 30px rgba(45, 80, 22, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px 40px;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow:
+                0 20px 40px rgba(45, 80, 22, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(168, 230, 207, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow:
+                0 25px 50px rgba(45, 80, 22, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            display: block;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6b8e23 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(45, 80, 22, 0.3);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #2d5016;
+        }
+
+        .feature-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #4a7c59;
+            font-weight: 600;
+        }
+
+        /* Screenshots Section */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .screenshot-card {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 50px;
+            box-shadow:
+                0 20px 40px rgba(45, 80, 22, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(168, 230, 207, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-10px);
+            box-shadow:
+                0 25px 50px rgba(45, 80, 22, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .screenshot-image {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            box-shadow:
+                0 15px 30px rgba(45, 80, 22, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .screenshot-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2d5016;
+        }
+
+        .screenshot-description {
+            color: #4a7c59;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            font-weight: 600;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 50px 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            box-shadow:
+                0 20px 40px rgba(45, 80, 22, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(168, 230, 207, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow:
+                0 25px 50px rgba(45, 80, 22, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .stat-number {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6b8e23 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(45, 80, 22, 0.3);
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d5016;
+        }
+
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px 40px;
+            border-radius: 50px;
+            box-shadow:
+                0 20px 40px rgba(45, 80, 22, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(168, 230, 207, 0.3);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow:
+                0 25px 50px rgba(45, 80, 22, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 4rem;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6b8e23 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            opacity: 0.3;
+        }
+
+        .review-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: #2d5016;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .review-author {
+            font-weight: 700;
+            color: #4a7c59;
+            text-align: right;
+            font-size: 1rem;
+        }
+
+        /* Download Section */
+        .download-section {
+            background: linear-gradient(135deg, rgba(168, 230, 207, 0.8) 0%, rgba(220, 237, 193, 0.8) 100%);
+            border-radius: 60px;
+            padding: 80px 60px;
+            margin: 60px 0;
+            text-align: center;
+            box-shadow:
+                0 20px 40px rgba(45, 80, 22, 0.2),
+                inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(168, 230, 207, 0.3);
+        }
+
+        .download-title {
+            font-size: 3.5rem;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6b8e23 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(45, 80, 22, 0.3);
+            font-weight: 800;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .download-message {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #4a7c59;
+            text-shadow: 0 0 20px rgba(74, 124, 89, 0.3);
+        }
+
+        .download-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 60px;
+            color: #2d5016;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+            color: #2d5016;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow:
+                0 15px 30px rgba(45, 80, 22, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 20px 40px rgba(45, 80, 22, 0.3),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .download-btn:active {
+            box-shadow:
+                inset 0 10px 20px rgba(45, 80, 22, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+        }
+
+        .system-requirements {
+            font-size: 1rem;
+            color: #4a7c59;
+            margin-top: 40px;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .srs-title {
+                font-size: 2.5rem;
+            }
+
+            .srs-message {
+                font-size: 1.5rem;
+            }
+
+            .srs-principles {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .download-title {
+                font-size: 2.5rem;
+            }
+
+            .download-message {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .srs-section,
+            .download-section {
+                padding: 60px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">🎮 보카 웨이브</div>
+            <div class="tagline">단어공부용 게임</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">"게임을 할수록 단어실력이 쑥쑥!"</h1>
+                <p class="hero-subtitle">단어 공부가 더이상 지루하지 않습니다</p>
+                <div class="video-container">
+                    <video autoplay muted loop>
+                    </video>
+                    <div class="video-placeholder">
+                        📱 모바일 화면<br>
+                        🎥 동영상 추가 위치<br>
+                        <small>(예: 게임플레이 영상)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SRS Learning System Section -->
+    <section class="section srs-section">
+        <div class="container">
+            <div class="srs-content">
+                <h2 class="srs-title">🧠 과학적 반복 학습 시스템 (SRS)</h2>
+                <p class="srs-message">"잊어버리기 전에 다시 학습하세요!"</p>
+                <p class="srs-subtitle">기억 곡선에 따른 최적의 복습 타이밍으로 효율적인 학습</p>
+
+                <div class="srs-principles">
+                    <div class="principle">
+                        <div class="principle-text">✅ 아는 단어는 많을수록 이득</div>
+                        <p>빠르게 통과하여 시간 절약</p>
+                    </div>
+                    <div class="principle">
+                        <div class="principle-text">❌ 모르는 단어는 알 때까지</div>
+                        <p>집중 반복 학습으로 완전 정복</p>
+                    </div>
+                </div>
+
+                <div class="srs-features">
+                    <div class="feature-item">📊 기억 곡선 분석</div>
+                    <div class="feature-item">🎯 개인별 맞춤</div>
+                    <div class="feature-item">🧠 장기 기억 전환</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">🎯 게임 특징</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">⚡</span>
+                        <h3 class="feature-title">강력한 몰입력</h3>
+                        <p class="feature-description">빨리 답을 맞출수록 더 강력해집니다</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📚</span>
+                        <h3 class="feature-title">모르는 단어도 쉽게</h3>
+                        <p class="feature-description">틀린 답은 바로 재학습하고 망각 곡선에 따른 최적의 재학습 기회를 제공합니다</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📖</span>
+                        <h3 class="feature-title">체계적 학습</h3>
+                        <p class="feature-description">학년별 단어장으로 단계적으로 어휘력을 향상시킵니다</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">💥</span>
+                        <h3 class="feature-title">강한 성취감</h3>
+                        <p class="feature-description">떼로 몰려오는 강력한 적들도 퀴즈 한방에 제거하는 짜릿함을 느껴보세요</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Screenshots Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">🎮 실제 게임 화면</h2>
+                <div class="screenshots-grid">
+                    <div class="screenshot-card">
+                        <img src="./assets/images/screenshots/1.png" alt="몰려오는 적" class="screenshot-image">
+                        <h3 class="screenshot-title">몰려오는 적</h3>
+                        <p class="screenshot-description">어떻게 하지?</p>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="./assets/images/screenshots/2.png" alt="단어야 구해줘ㅠㅠ" class="screenshot-image">
+                        <h3 class="screenshot-title">단어야 구해줘ㅠㅠ</h3>
+                        <p class="screenshot-description">빨리 정답을 맞추자</p>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="./assets/images/screenshots/3.png" alt="강력한 공격!" class="screenshot-image">
+                        <h3 class="screenshot-title">강력한 공격!</h3>
+                        <p class="screenshot-description">속이 다 시원하군</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Stats Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">📊 학습 성과</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">단어 기억률 향상</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10배</div>
+                        <div class="stat-label">학습 속도 증가</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">사용자 만족도</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Reviews Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">💬 사용자 후기</h2>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <p class="review-text">그동안 단어암기하는게 너무 힘들었는데, 기존 단어 암기어플과는 너무 다르네요.</p>
+                        <div class="review-author">- 김** (초등학교 2학년)</div>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-text">다른 게임은 부모님 몰래 했었는데, 이제는 부모님이 게임 좀 하라고 강요하세요. ㅋㅋ</p>
+                        <div class="review-author">- 이** (고등학교 1학년)</div>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-text">그동안 아이가 공부는 안하고 게임만 해서 고민이었는데, 이제 게임을 할수록 단어공부가 되니 아이가 자신감이 생겨서 좋아요.</p>
+                        <div class="review-author">- 박** (학부모)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="section download-section">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="download-title">지금 시작하세요!</h2>
+                <p class="download-message">"단어를 외우는데는 왕도가 없습니다. 오로지 반복 학습 뿐"</p>
+                <p class="download-subtitle">• 재미로 가득찬 보카 웨이브로 게임을 즐기다 보면 단어 암기 끝!</p>
+
+                <div class="download-buttons">
+                    <a href="https://apps.apple.com/app/helpee-words/id6473635697" class="download-btn"
+                        target="_blank">App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.araonesoft.helpee" class="download-btn"
+                        target="_blank">Google Play</a>
+                </div>
+
+                <div class="system-requirements">iOS 13.0+ | Android 8.0+</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Asset fallback system
+        function loadImageWithFallback(imgElement) {
+            imgElement.onerror = function () {
+                // ./assets/가 실패하면 ../../assets/로 시도
+                this.src = this.src.replace('./assets/', '../../assets/');
+            };
+        }
+
+        function loadVideoWithFallback(videoElement) {
+            videoElement.onerror = function () {
+                // ./assets/가 실패하면 ../../assets/로 시도
+                this.src = this.src.replace('./assets/', '../../assets/');
+            };
+        }
+
+        // Apply fallback to all images and videos
+        document.addEventListener('DOMContentLoaded', function () {
+            // Video setup with fallback
+            const video = document.querySelector('video');
+            if (video) {
+                video.src = './assets/videos/vocab_wave.mp4';
+                loadVideoWithFallback(video);
+            }
+
+            // Image fallbacks
+            const images = document.querySelectorAll('img[src*="./assets/"]');
+            images.forEach(img => {
+                loadImageWithFallback(img);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -580,7 +580,7 @@
                     <div class="mobile-frame">
                         <div class="mobile-screen">
                             <video autoplay muted loop playsinline class="game-video">
-                                <source src="assets/videos/vocab_wave.mp4" type="video/mp4">
+                                <source src="./assets/videos/vocab_wave.mp4" type="video/mp4">
                                 <div class="video-placeholder">
                                     📱 모바일 화면<br>
                                     🎥 동영상 추가 위치<br>
@@ -665,21 +665,21 @@
                 <div class="screenshots-grid">
                     <div class="screenshot-item">
                         <div class="screenshot-image">
-                            <img src="assets/images/screenshots/1.png" alt="몰려드는 적 스크린샷" />
+                            <img src="./assets/images/screenshots/1.png" alt="몰려드는 적 스크린샷" />
                         </div>
                         <h4>몰려오는 적</h4>
                         <p>어떻게 하지?</p>
                     </div>
                     <div class="screenshot-item">
                         <div class="screenshot-image">
-                            <img src="assets/images/screenshots/2.png" alt="퀴즈 스크린샷" />
+                            <img src="./assets/images/screenshots/2.png" alt="퀴즈 스크린샷" />
                         </div>
                         <h4>단어야 구해줘ㅠㅠ</h4>
                         <p>빨리 정답을 맞추자</p>
                     </div>
                     <div class="screenshot-item">
                         <div class="screenshot-image">
-                            <img src="assets/images/screenshots/3.png" alt="공격하는 스크린샷" />
+                            <img src="./assets/images/screenshots/3.png" alt="공격하는 스크린샷" />
                         </div>
                         <h4>강력한 공격!</h4>
                         <p>속이 다 시원하군</p>
@@ -761,6 +761,36 @@
     </footer>
 
     <script>
+        // Asset fallback system
+        function loadImageWithFallback(imgElement) {
+            imgElement.onerror = function () {
+                // ./assets/가 실패하면 ../assets/로 시도
+                this.src = this.src.replace('./assets/', '../assets/');
+            };
+        }
+
+        function loadVideoWithFallback(videoElement) {
+            videoElement.onerror = function () {
+                // ./assets/가 실패하면 ../assets/로 시도
+                this.src = this.src.replace('./assets/', '../assets/');
+            };
+        }
+
+        // Apply fallback to all images and videos
+        document.addEventListener('DOMContentLoaded', function () {
+            // Video fallback
+            const video = document.querySelector('.game-video');
+            if (video) {
+                loadVideoWithFallback(video);
+            }
+
+            // Image fallbacks
+            const images = document.querySelectorAll('img[src*="./assets/"]');
+            images.forEach(img => {
+                loadImageWithFallback(img);
+            });
+        });
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
